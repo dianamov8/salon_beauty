@@ -1,0 +1,48 @@
+{% extends 'base_2.html' %}
+
+{% block title %}Магазин{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/style_one.css" />
+{% endblock style %}
+
+{% block nav %}
+  <div class="navigation">
+    <nav>
+      <div class="nav_element_wrap">
+        <div class="nav_element">
+          <a href={{url_for('shop')}} class='nav_a'>Магазин</a>
+        </div>
+        <div class="nav_element_2">
+          <span class='nav_text'>{{good[2]}}</span>
+        </div>
+        <div class="nav_element">
+          <a href={{url_for('cart')}} class='nav_a'>Кошик</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+{% endblock nav %}
+
+{% block content %}
+<div class="main_content_wrapper">
+  <div class="main_content">
+    <div class="main_content_img">
+      <img src="{{good[1]}}" />
+    </div>
+    <div class="text_wrapper">
+      <div class="main_content_information">
+        <span>{{good[2]}}</span>
+        <p>{{good[3]}}</p>
+      </div>
+      <div class="main_content_p_and_basket">
+        <p>{{good[4]}} грн</p>
+        <form method="post">
+          <input type="submit" class="sub_btn" value=" Додати в кошик" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content%}

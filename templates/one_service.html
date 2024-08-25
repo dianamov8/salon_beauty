@@ -1,0 +1,62 @@
+{% extends 'base_2.html' %}
+
+{% block title %}Послуги{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="/static/style_one_service.css" />
+{% endblock style %}
+
+{% block nav %}
+  <div class="navigation">
+    <nav>
+      <div class="nav_element_wrap">
+        <div class="nav_element">
+          <a href={{url_for('index')}} class='nav_a'>Головна</a>
+        </div>
+        <div class="nav_element_2">
+          <span class='nav_text'>{{ main_service['name'] }}</span>
+        </div>
+        <div class="nav_element">
+          <a href={{url_for('services')}} class='nav_a'>Послуги</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+{% endblock nav %}
+
+{% block content %}
+<div class="all_content_wrapper">
+  <div class="top_text_wrapper">
+    <div class="top_text">
+      <p>{{ main_service['description'] }}</p>
+    </div>
+  </div>
+  <div class='all_services_wrapper'>
+    {% for sub_service in sub_services %}
+      <div class='all_service_info_wrapper'>
+        <div class="all_service_info">
+          <div class="service_info_name_wrapper">
+            <p>{{ sub_service['name'] }}</p>
+          </div>
+          <div class="service_info_wrapper">
+            <div class="service_info_img">
+              <img src="{{ sub_service['image'] }}" alt="{{ 
+              sub_service['name'] }}">
+            </div>
+            <div class="service_info_description_wrapper">
+              <div class="service_info_description">
+                <p>{{ sub_service['description'] }}</p>
+                <div class="service_info_description_prc_btn">
+                  <p>Ціна: {{ sub_service['price'] }}грн</p>
+                  <a href="{{ url_for('book', sub_service_id=sub_service['id']) 
+                  }}" class='sub_btn'>Записатись</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock%}

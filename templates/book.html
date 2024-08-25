@@ -1,0 +1,48 @@
+{% extends 'base_2.html' %}
+
+{% block title %}Замовити{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/style_book.css" />
+{% endblock style %}
+
+{% block nav %}
+  <div class="navigation">
+        <nav>
+            <a href={{url_for('index')}} class='nav_a_1'>Головна</a>
+            <span class='nav_text'>Запис</span>
+            <a href={{url_for('services')}} class='nav_a_2'>Послуги</a>
+        </nav>
+    </div>
+{% endblock nav %}
+
+{% block content %}
+
+<div class="all_wrapper">
+  <div class="top_text_wrapper">
+    <p>Запис на '{{ sub_service.name }}'</p>
+  </div>  
+  <div class="input_group_wrapper">
+    <div class="input_group">
+      <form method="POST" action="{{ url_for('book', sub_service_id=sub_service.id) }}">
+        <div class="form_wrapper name_wrapper">
+          <input type="text" id="name" name="name" class='input_first_name' required/>
+          <label class="label_name">Ваше ім'я</label>
+        </div>
+        <div class="form_wrapper phone_wrapper">
+          <input  type="text" id="phone" name="phone" class="input_phone" required/>
+          <label class="label_phone">Ваш телефон</label>
+        </div>
+        <div class="form_wrapper date_wrapper">
+          <input  type="datetime-local" id="date_time" name="date_time" class="input_address" required />
+          <label class="label_address">Зручний час і дата</label>
+        </div>
+        <div class="name_wrapper">
+          <button type="submit" class="sub_btn">Записатися</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock%}

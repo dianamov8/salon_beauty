@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Titleee{% endblock %}</title>
+    {% block style %}
+    <link rel="stylesheet" href="/static/style_shop.css" />
+    {% endblock style %}
+  </head>
+  <body>
+    {% block nav %} {% endblock nav %} {% block content %} {% endblock %}
+  </body>
+</html>

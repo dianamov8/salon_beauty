@@ -1,0 +1,64 @@
+{% extends 'base_2.html' %}
+
+{% block title %}Магазин{% endblock title %}
+
+{% block style %}
+<link rel="stylesheet" href="/static/style_cart.css" />
+{% endblock style %}
+
+{% block nav %}
+  <div class="navigation">
+        <nav>
+            <a href={{url_for('index')}} class='nav_a_1'>Головна</a>
+            <span class='nav_text'>Кошик</span>
+            <a href={{url_for('shop')}} class='nav_a_2'>Магазин</a>
+        </nav>
+    </div>
+{% endblock nav %}
+
+
+{% block content %}
+<div class="all_prods_wrapper">
+  <div class="all_prods">
+    {% for good in goods %}
+      <div class="every_prod_wrapper">
+        <div class="every_prod">
+          <div class="every_prod_img">
+            <img src="{{good[1]}}" />
+          </div>
+          <div class="every_prod_name_wrapper">
+            <div class="every_prod_name_wrapper_2">
+              <div class="every_prod_name">
+                <span>{{good[2]}}</span>
+              </div>
+              <div class="every_prod_name_2">
+                <p>{{good[3]|truncate(length=27)}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="p_and_info_div_wrapper">
+            <div class="p_and_info_div">
+              <div class="every_prod_p">
+                <p>{{good[4]}}</p>
+              </div>
+              <div class="every_prod_info">
+                <form action="/form/{{good[0]}}/" method="post">
+                  <input type="submit" value="Замовити"  class="order_btn">
+                </form>
+                <form action="/delete/{{good[0]}}/" method="post" onsubmit="return confirmDeletion()">
+                  <input type="submit" value="Видалити" class="dlt_btn" />
+                </form>
+                <script>
+                function confirmDeletion() {
+                    return confirm("Ви впевнені, що хочете видалити цей продукт з корзини? ");
+                  }
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content %}
